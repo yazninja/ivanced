@@ -9,6 +9,16 @@ Vue.component('plugin.ivanced-settings', {
                 <div class="settings-option-body">
                     <div class="md-option-line">
                         <div class="md-option-segment">
+                            Use Apple Icons
+                        </div>
+                        <div class="md-option-segment md-option-segment_auto">
+                            <input type="checkbox" v-model="appleIcons"  v-on:change="checkAppleIcons"switch/>
+                        </div>
+                    </div>
+                    <div style="opacity: 0.5; pointer-events: none;">
+                    <div class="md-option-header"> Unfinished/ Unfunctional/</div>
+                    <div class="md-option-line">
+                        <div class="md-option-segment">
                             Sample Button
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
@@ -33,14 +43,6 @@ Vue.component('plugin.ivanced-settings', {
                                 <b>Enabled</b>: Minimize, Maximize, Close<br>
                                 <b>Disabled</b>: Close, Minimize, Maximize
                             </small>
-                        </div>
-                        <div class="md-option-segment md-option-segment_auto">
-                            <input type="checkbox" switch/>
-                        </div>
-                    </div>
-                    <div class="md-option-line">
-                        <div class="md-option-segment">
-                            Use Apple Icons
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
                             <input type="checkbox" switch/>
@@ -84,18 +86,31 @@ Vue.component('plugin.ivanced-settings', {
                             </select>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
         </div>
     `,
     data: function () {
         return {
-
+            appleIcons: false,
         }
     },
     async mounted() {
 
     },
     methods: {
+        checkAppleIcons: function () {
+            if (this.appleIcons) {
+                CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/cupertinoicns.less")
+                console.log("Apple Icons Enabled")
+            }
+            else {
+                document.querySelector("head").removeChild(document.querySelector("link[href*='cupertinoicns.less']"))
+                less.registerStylesheetsImmediately()
+                less.refresh(true, true, true)
+                console.log("Apple Icons Disabled")
+            }
+        }
     }
 })

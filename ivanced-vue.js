@@ -137,7 +137,7 @@ Vue.component('plugin.ivanced-settings', {
                 less.refresh(true, true, true)
                 console.log("Apple Icons Disabled")
             }
-            await CiderCache.putCache("theme-settings", theme)
+            CiderCache.putCache("theme-settings", theme)
         },
         toggleHome: function () {
             if (this.theme.sidebar.home) {
@@ -149,7 +149,7 @@ Vue.component('plugin.ivanced-settings', {
                 document.getElementsByClassName("app-sidebar-header-text")[0].style.display = "block"
                 document.getElementsByClassName("app-sidebar-item")[0].style.display = "flex"
             }
-            await CiderCache.putCache("theme-settings", theme)
+            CiderCache.putCache("theme-settings", theme)
         },
         toggleVideos: function () {
             if (this.theme.sidebar.videos) {
@@ -158,7 +158,7 @@ Vue.component('plugin.ivanced-settings', {
             else {
                 document.getElementsByClassName("app-sidebar-item")[8].style.display = "flex"
             }
-            await CiderCache.putCache("theme-settings", theme)
+            CiderCache.putCache("theme-settings", theme)
         },
         togglePodcasts: function () {
             if (this.theme.sidebar.podcasts) {
@@ -167,7 +167,7 @@ Vue.component('plugin.ivanced-settings', {
             else {
                 document.getElementsByClassName("app-sidebar-item")[9].style.display = "flex"
             }
-            await CiderCache.putCache("theme-settings", theme)
+            CiderCache.putCache("theme-settings", theme)
         },
         checkAll: function () {
             this.checkAppleIcons();

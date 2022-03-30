@@ -10,6 +10,9 @@ Vue.component('plugin.ivanced-settings', {
                     <div class="md-option-line">
                         <div class="md-option-segment">
                             Use Apple Icons
+                            <small>
+                                Requires app restart to disable
+                            </small>
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
                             <input type="checkbox" v-model="theme.appleIcons"  v-on:change="checkAppleIcons"switch/>
@@ -130,7 +133,7 @@ Vue.component('plugin.ivanced-settings', {
     },
     async mounted() {
         this.theme = await CiderCache.getCache("theme-settings")
-        if(!this.theme) {
+        if (!this.theme) {
             this.theme = {
                 appleIcons: false,
                 sidebar: {
@@ -144,14 +147,16 @@ Vue.component('plugin.ivanced-settings', {
     },
     methods: {
         checkAppleIcons: function () {
-            if (this.theme.appleIcons) { 
+            if (this.theme.appleIcons) {
                 CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/cupertinoicns.less")
                 console.log("Apple Icons Enabled")
             }
             else {
-                document.querySelector("head").removeChild(document.querySelector("link[href*='cupertinoicns.less']"))
-                less.registerStylesheetsImmediately()
-                less.refresh(true, true, true)
+                bootbox.confirm(app.getLz('action.relaunch.confirm'), function (result) {
+                    if (result) {
+                        ipcRenderer.send('relaunchApp', '');
+                    }
+                })
                 console.log("Apple Icons Disabled")
             }
             CiderCache.putCache("theme-settings", this.theme)
@@ -160,7 +165,7 @@ Vue.component('plugin.ivanced-settings', {
             if (this.theme.sidebar.home) {
                 document.getElementsByClassName("app-sidebar-header-text")[0].style.display = "none"
                 document.getElementsByClassName("app-sidebar-item")[0].style.display = "none"
-                
+
             }
             else {
                 document.getElementsByClassName("app-sidebar-header-text")[0].style.display = "block"

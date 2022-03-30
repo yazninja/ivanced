@@ -11,16 +11,17 @@ class iVancedPlugin {
         CiderFrontAPI.AddMenuEntry(menuEntry)
         this.LoadSettings()
     }
-    LoadSettings() {
-        this.theme = CiderCache.getCache("theme-settings")
+    async LoadSettings() {
+        this.theme = await CiderCache.getCache("theme-settings")
+        console.log(this.theme)
         if (this.theme.appleIcons) { 
             CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/cupertinoicns.less")
             console.log("Apple Icons Enabled")
         }
         else {
-            document.querySelector("head").removeChild(document.querySelector("link[href*='cupertinoicns.less']"))
-            less.registerStylesheetsImmediately()
-            less.refresh(true, true, true)
+            // document.querySelector("head").removeChild(document.querySelector("link[href*='cupertinoicns.less']"))
+            // less.registerStylesheetsImmediately()
+            // less.refresh(true, true, true)
             console.log("Apple Icons Disabled")
         }
         if (this.theme.sidebar.home) {

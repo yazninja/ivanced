@@ -118,16 +118,33 @@ Vue.component('plugin.ivanced-settings', {
     `,
     data: function () {
         return {
-            app : this.$root,
-            theme: this.env.theme,
+            theme: {
+                appleIcons: false,
+                sidebar: {
+                    home: false,
+                    videos: false,
+                    podcasts: false
+                }
+            }
         }
     },
     async mounted() {
-
+        this.theme = await CiderCache.getCache("theme-settings")
+        if(!this.theme) {
+            this.theme = {
+                appleIcons: false,
+                sidebar: {
+                    home: false,
+                    videos: false,
+                    podcasts: false
+                }
+            }
+            CiderCache.putCache("theme-settings", this.theme)
+        }
     },
     methods: {
         checkAppleIcons: function () {
-            if (this.theme.appleIcons) {
+            if (this.theme.appleIcons) { 
                 CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/cupertinoicns.less")
                 console.log("Apple Icons Enabled")
             }
@@ -137,7 +154,7 @@ Vue.component('plugin.ivanced-settings', {
                 less.refresh(true, true, true)
                 console.log("Apple Icons Disabled")
             }
-            CiderCache.putCache("theme-settings", theme)
+            CiderCache.putCache("theme-settings", this.theme)
         },
         toggleHome: function () {
             if (this.theme.sidebar.home) {
@@ -149,7 +166,7 @@ Vue.component('plugin.ivanced-settings', {
                 document.getElementsByClassName("app-sidebar-header-text")[0].style.display = "block"
                 document.getElementsByClassName("app-sidebar-item")[0].style.display = "flex"
             }
-            CiderCache.putCache("theme-settings", theme)
+            CiderCache.putCache("theme-settings", this.theme)
         },
         toggleVideos: function () {
             if (this.theme.sidebar.videos) {
@@ -158,7 +175,7 @@ Vue.component('plugin.ivanced-settings', {
             else {
                 document.getElementsByClassName("app-sidebar-item")[8].style.display = "flex"
             }
-            CiderCache.putCache("theme-settings", theme)
+            CiderCache.putCache("theme-settings", this.theme)
         },
         togglePodcasts: function () {
             if (this.theme.sidebar.podcasts) {
@@ -167,7 +184,7 @@ Vue.component('plugin.ivanced-settings', {
             else {
                 document.getElementsByClassName("app-sidebar-item")[9].style.display = "flex"
             }
-            CiderCache.putCache("theme-settings", theme)
+            CiderCache.putCache("theme-settings", this.theme)
         },
         checkAll: function () {
             this.checkAppleIcons();

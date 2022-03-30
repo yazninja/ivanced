@@ -12,7 +12,7 @@ Vue.component('plugin.ivanced-settings', {
                             Use Apple Icons
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
-                            <input type="checkbox" v-model="appleIcons"  v-on:change="checkAppleIcons"switch/>
+                            <input type="checkbox" v-model="theme.appleIcons"  v-on:change="checkAppleIcons"switch/>
                         </div>
                     </div>
                     <div class="md-option-header"> Sidebar </div>
@@ -21,7 +21,7 @@ Vue.component('plugin.ivanced-settings', {
                             Remove Home
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
-                            <input type="checkbox" v-model="sidebar.home"  v-on:change="toggleHome"switch/>
+                            <input type="checkbox" v-model="theme.sidebar.home"  v-on:change="toggleHome"switch/>
                         </div>
                     </div>
                     <div class="md-option-line">
@@ -29,7 +29,7 @@ Vue.component('plugin.ivanced-settings', {
                             Remove Videos
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
-                            <input type="checkbox" v-model="sidebar.videos"  v-on:change="toggleVideos"switch/>
+                            <input type="checkbox" v-model="theme.sidebar.videos"  v-on:change="toggleVideos"switch/>
                         </div>
                     </div>
                     <div class="md-option-line">
@@ -37,7 +37,7 @@ Vue.component('plugin.ivanced-settings', {
                             Remove Podcasts
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
-                            <input type="checkbox" v-model="sidebar.podcasts"  v-on:change="togglePodcasts"switch/>
+                            <input type="checkbox" v-model="theme.sidebar.podcasts"  v-on:change="togglePodcasts"switch/>
                         </div>
                     </div>
                     <div style="opacity: 0.5; pointer-events: none;">
@@ -119,12 +119,7 @@ Vue.component('plugin.ivanced-settings', {
     data: function () {
         return {
             app : this.$root,
-            appleIcons: false,
-            sidebar: {
-                home: false,
-                videos: false,
-                podcasts: false
-            }
+            theme: this.env.theme,
         }
     },
     async mounted() {
@@ -132,7 +127,7 @@ Vue.component('plugin.ivanced-settings', {
     },
     methods: {
         checkAppleIcons: function () {
-            if (this.appleIcons) {
+            if (this.theme.appleIcons) {
                 CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/cupertinoicns.less")
                 console.log("Apple Icons Enabled")
             }
@@ -142,9 +137,10 @@ Vue.component('plugin.ivanced-settings', {
                 less.refresh(true, true, true)
                 console.log("Apple Icons Disabled")
             }
+            await CiderCache.putCache("theme-settings", theme)
         },
         toggleHome: function () {
-            if (this.sidebar.home) {
+            if (this.theme.sidebar.home) {
                 document.getElementsByClassName("app-sidebar-header-text")[0].style.display = "none"
                 document.getElementsByClassName("app-sidebar-item")[0].style.display = "none"
                 
@@ -153,22 +149,31 @@ Vue.component('plugin.ivanced-settings', {
                 document.getElementsByClassName("app-sidebar-header-text")[0].style.display = "block"
                 document.getElementsByClassName("app-sidebar-item")[0].style.display = "flex"
             }
+            await CiderCache.putCache("theme-settings", theme)
         },
         toggleVideos: function () {
-            if (this.sidebar.videos) {
+            if (this.theme.sidebar.videos) {
                 document.getElementsByClassName("app-sidebar-item")[8].style.display = "none"
             }
             else {
                 document.getElementsByClassName("app-sidebar-item")[8].style.display = "flex"
             }
+            await CiderCache.putCache("theme-settings", theme)
         },
         togglePodcasts: function () {
-            if (this.sidebar.podcasts) {
+            if (this.theme.sidebar.podcasts) {
                 document.getElementsByClassName("app-sidebar-item")[9].style.display = "none"
             }
             else {
                 document.getElementsByClassName("app-sidebar-item")[9].style.display = "flex"
             }
+            await CiderCache.putCache("theme-settings", theme)
+        },
+        checkAll: function () {
+            this.checkAppleIcons();
+            this.toggleHome();
+            this.toggleVideos();
+            this.togglePodcasts();
         }
     }
 })

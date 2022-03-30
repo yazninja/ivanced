@@ -8,6 +8,16 @@ module.exports = class iVancedPlugin {
 
     // Called when the backend is ready
     onReady(win) {
+        // Add a try catch block to prevent errors
+        try {
+            let theme = CiderCahche.get('theme-settings');
+            if (theme) {
+                this.debug("Theme settings found in cache")
+            }
+        }
+        catch (e) {
+            this.debug("Theme settings not found in cache", e)
+        }
 
     }
 

@@ -205,22 +205,38 @@
 }
 
 .modal-fullscreen .modal-window {
-    .modal-content .sidebar-icon>svg {
-        &.feather-list {
-            background-image: var(--playlistsIcon);
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 130%;
-            color: transparent;
+    .modal-content .sidebar-playlist {
+        .sidebar-icon>svg {
+            &.feather-list {
+                background-image: var(--playlistsIcon);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 130%;
+                color: transparent !important;
+            }
+    
+            &.feather-folder {
+                background-image: var(--playlistFoldersIcon);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 130%;
+                color: transparent !important;
+            }
         }
-        &.feather-folder {
-            background-image: var(--playlistFoldersIcon);
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 130%;
-            color: transparent;
+        &:hover{
+            .sidebar-icon>svg {
+                &.feather-list {
+                    filter: invert(1);
+                }
+        
+                &.feather-folder {
+                    filter: invert(1);
+                }
+            }
         }
     }
+
+    
 
 }
 

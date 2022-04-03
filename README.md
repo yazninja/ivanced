@@ -1,16 +1,28 @@
-# V2 Plugin
-V2 plugins are in early development, but fundamentally should work the same as progress continues.
+# iVanced Plugin for [Cider](https://cider.sh/) (Alpha) <img src="https://img.shields.io/github/stars/yazninja/iVanced?style=social" width="70"></img>
+*This plugin is in alpha and is constantly being worked on*
 
-https://github.com/ciderapp/Cider/wiki/Plugin-Development
+This Plugin was made to add extra functionalities to iTheme.
+https://github.com/ciderapp/iTheme
 
-Differences from current plugins:
-* Currently only supports JavaScript
-* Plugin constructors are passed a "PluginEnv" with several helpers
-  * `app` - The Electron app
-  * `store` - Electron Store
-  * `utils` - Cider utils
-  * `win` - The renderer window
-  * `dir` - Path to the plugin directory
-* Plugins must be stored in a folder and contain a `package.json` file, this package.json file uses the same format as node packages so new plugins can be started with `npm init`
-* `index.js` is currently the default entry script for backend plugins
-* The frontend portion of plugins should be loaded on onRendererReady()
+---
+
+What This plugin can do:
+* Use Apple Icons
+* Edit Sidebar Items (to be merged with the settings page)
+
+Upcoming features:
+* `Force Theme variant` - Force iTheme to use dark mode/ light mode
+* `Set Navigation Button Location` - Make Navigation appear where you want it to appear
+
+
+
+### See Any Bugs?
+Create an [issue](https://github.com/yazninja/iVanced/issues).
+or
+Messege me on [Discord](http://discord.com/users/325495275454070786) about it :)
+
+---
+
+### License & Credits
+[MIT License](https://github.com/yazninja/apple-cider-lite/blob/main/LICENSE)
+#### Designed by [yazninja](https://github.com/yazninja)

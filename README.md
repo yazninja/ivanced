@@ -1,6 +1,8 @@
 # iVanced Plugin for [Cider](https://cider.sh/) (Alpha) <img src="https://img.shields.io/github/stars/yazninja/iVanced?style=social" width="70"></img>
 *This plugin is in alpha and is constantly being worked on*
 
+**This plugin is not affiliated with Cider Collective**
+
 This Plugin was made to add extra functionalities to iTheme.
 https://github.com/ciderapp/iTheme
 

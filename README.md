@@ -2,6 +2,7 @@
 *This plugin is in alpha and is constantly being worked on*
 
 **This plugin is not affiliated with Cider Collective**
+
 This Plugin was made to add extra functionalities to iTheme.
 https://github.com/ciderapp/iTheme
 

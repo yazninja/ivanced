@@ -184,6 +184,8 @@ Vue.component('plugin.ivanced-settings', {
                 document.documentElement.classList.remove("dark");
                 document.documentElement.classList.remove("light");
             }
+            console.log("Theme Variant Changed: ", this.theme.variant)
+            console.log("Root Elem: ", document.documentElement.classList)
             CiderCache.putCache("theme-settings", this.theme)
         },
         checkAll: function () {

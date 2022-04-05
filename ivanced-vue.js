@@ -21,6 +21,9 @@ Vue.component('plugin.ivanced-settings', {
                     <div class="md-option-line">
                         <div class="md-option-segment">
                             Force Theme Variant
+                            <small>
+                                Only tested with iTheme (may not work with other themes)
+                            </small>
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
                             <select class="md-select" style="width:180px;" v-model="theme.variant" v-on:change="toggleThemeVariant">

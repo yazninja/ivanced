@@ -16,7 +16,21 @@ Upcoming features:
 * `Force Theme variant` - Force iTheme to use dark mode/ light mode
 * `Set Navigation Button Location` - Make Navigation appear where you want it to appear
 
+---
 
+### Installation/ Update
+1. Go to Cider settings
+2. Click `Advacned` tab
+3. Under `Experimental Settings` click `Explore Github Plugins`
+4. Look for `iVanced (Alpha)` and click install
+
+### Usage
+1. Click Cider Icon/ Profile Picture on the ttop bar
+2. In the User menu, clcik `Plug-in`
+3. From the plug-in menu, select `iTheme Advanced Settings`
+4. Use your desired settings
+
+---
 
 ### See Any Bugs?
 Create an [issue](https://github.com/yazninja/iVanced/issues).

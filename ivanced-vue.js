@@ -22,8 +22,8 @@ Vue.component('plugin.ivanced-settings', {
                         <div class="md-option-segment">
                             Force Theme Variant
                         </div>
-                        <div class="md-option-segment md-option-segment_auto" v-model="theme.variant" v-on:change="toggleThemeVariant">
-                            <select class="md-select" style="width:180px;" >
+                        <div class="md-option-segment md-option-segment_auto">
+                            <select class="md-select" style="width:180px;" v-model="theme.variant" v-on:change="toggleThemeVariant">
                                 <option value="none">Use System Theme</option>
                                 <option value="light">Force Light Mode</option>
                                 <option value="dark">Force Dark Mode</option>
@@ -102,6 +102,7 @@ Vue.component('plugin.ivanced-settings', {
         return {
             theme: {
                 appleIcons: false,
+                variant: 'none',
                 sidebar: {
                     home: false,
                     videos: false,
@@ -115,7 +116,7 @@ Vue.component('plugin.ivanced-settings', {
         if (!this.theme) {
             this.theme = {
                 appleIcons: false,
-                variant: "none",
+                variant: 'none',
                 sidebar: {
                     home: false,
                     videos: false,

@@ -11,9 +11,9 @@ https://github.com/ciderapp/iTheme
 What This plugin can do:
 * Use Apple Icons
 * Edit Sidebar Items (to be merged with the settings page)
+* `Force Theme variant` - Force iTheme to use dark mode/ light mode
 
 Upcoming features:
-* `Force Theme variant` - Force iTheme to use dark mode/ light mode
 * `Set Navigation Button Location` - Make Navigation appear where you want it to appear
 
 ---

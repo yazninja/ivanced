@@ -24,7 +24,7 @@ Vue.component('plugin.ivanced-settings', {
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
                             <select class="md-select" style="width:180px;" v-model="theme.variant" v-on:change="toggleThemeVariant">
-                                <option value="none">Use System Theme</option>
+                                <option value="none" selected>Use System Theme</option>
                                 <option value="light">Force Light Mode</option>
                                 <option value="dark">Force Dark Mode</option>
                             </select>

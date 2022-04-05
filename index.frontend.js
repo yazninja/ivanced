@@ -45,6 +45,18 @@ class iVancedPlugin {
         else {
             document.getElementsByClassName("app-sidebar-item")[9].style.display = "flex"
         }
+        if (this.theme.variant == "dark") {
+            document.documentElement.classList.add("dark");
+            document.documentElement.classList.remove("light");
+        }
+        else if (this.theme.variant == "light") {
+            document.documentElement.classList.add("light");
+            document.documentElement.classList.remove("dark");
+        }
+        else {
+            document.documentElement.classList.remove("dark");
+            document.documentElement.classList.remove("light");
+        }
     }
 }
 

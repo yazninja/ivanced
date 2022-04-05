@@ -18,6 +18,18 @@ Vue.component('plugin.ivanced-settings', {
                             <input type="checkbox" v-model="theme.appleIcons"  v-on:change="checkAppleIcons"switch/>
                         </div>
                     </div>
+                    <div class="md-option-line">
+                        <div class="md-option-segment">
+                            Force Theme Variant
+                        </div>
+                        <div class="md-option-segment md-option-segment_auto" v-model="theme.variant" v-on:change="toggleThemeVariant">
+                            <select class="md-select" style="width:180px;" >
+                                <option value="none">Use System Theme</option>
+                                <option value="light">Force Light Mode</option>
+                                <option value="dark">Force Dark Mode</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="md-option-header"> Sidebar </div>
                     <div class="md-option-line">
                         <div class="md-option-segment">
@@ -57,27 +69,6 @@ Vue.component('plugin.ivanced-settings', {
                     </div>
                     <div class="md-option-line">
                         <div class="md-option-segment">
-                            Window Icons In the Right
-                        </div>
-                        <div class="md-option-segment md-option-segment_auto">
-                            <input type="checkbox" switch/>
-                        </div>
-                    </div>
-                    <div class="md-option-line">
-                        <div class="md-option-segment">
-                            Use Windowws Stoplight Layout
-                            <small>
-                                Arrangement of Window control Icons (from left to right)<br>
-                                <b>Enabled</b>: Minimize, Maximize, Close<br>
-                                <b>Disabled</b>: Close, Minimize, Maximize
-                            </small>
-                        </div>
-                        <div class="md-option-segment md-option-segment_auto">
-                            <input type="checkbox" switch/>
-                        </div>
-                    </div>
-                    <div class="md-option-line">
-                        <div class="md-option-segment">
                             Lyrics in Fullscreen Mode
                             <small>
                                 <b>Hidden</b>: Once Fullscreen is loaded, the lyrics will be hidden, but the lyrics button still remains.<br>
@@ -93,24 +84,12 @@ Vue.component('plugin.ivanced-settings', {
                     </div>
                     <div class="md-option-line">
                         <div class="md-option-segment">
-                            Force Theme Variant
-                        </div>
-                        <div class="md-option-segment md-option-segment_auto">
-                            <select class="md-select" style="width:180px;" >
-                                <option value="none">Use System Theme</option>
-                                <option value="light">Force Light Mode</option>
-                                <option value="dark">Force Dark Mode</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="md-option-line">
-                        <div class="md-option-segment">
                             Navigation Buttons Location
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
-                            <select class="md-select" style="width:180px;" >
-                                <option value="none">Top Bar</option>
-                                <option value="light">Below Top Bar</option>
+                            <select class="md-select" style="width:180px;" v-model="theme.navBar">
+                                <option value="">Top Bar</option>
+                                <option value="seperate">Below Top Bar</option>
                             </select>
                         </div>
                     </div>
@@ -136,6 +115,7 @@ Vue.component('plugin.ivanced-settings', {
         if (!this.theme) {
             this.theme = {
                 appleIcons: false,
+                variant: "none",
                 sidebar: {
                     home: false,
                     videos: false,
@@ -188,6 +168,21 @@ Vue.component('plugin.ivanced-settings', {
             }
             else {
                 document.getElementsByClassName("app-sidebar-item")[9].style.display = "flex"
+            }
+            CiderCache.putCache("theme-settings", this.theme)
+        },
+        toggleThemeVariant: function () {
+            if (this.theme.variant == "dark") {
+                document.documentElement.classList.add("dark");
+                document.documentElement.classList.remove("light");
+            }
+            else if (this.theme.variant == "light") {
+                document.documentElement.classList.add("light");
+                document.documentElement.classList.remove("dark");
+            }
+            else {
+                document.documentElement.classList.remove("dark");
+                document.documentElement.classList.remove("light");
             }
             CiderCache.putCache("theme-settings", this.theme)
         },

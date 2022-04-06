@@ -200,17 +200,19 @@ Vue.component('plugin.ivanced-settings', {
             if (this.theme.navbar == "sidebar") {
                 app.chrome.forceDirectives["appNavigation"] = { value: "default" }
                 document.documentElement.classList.remove("navbar-topbar");
-                app.$forceUpdate()
+                this.app.$forceUpdate()
             }
             else if (this.theme.navbar == "top") {
                 app.chrome.forceDirectives["appNavigation"] = { value: "default" }
                 document.documentElement.classList.add("navbar-topbar");
-                app.$forceUpdate()
+                this.app.$forceUpdate()
             }
             else {
                 app.chrome.forceDirectives["appNavigation"] = { value: "seperate" }
-                app.$forceUpdate()
+                this.app.$forceUpdate()
             }
+            console.log("Navbar Changed: ", this.theme.navbar, "Directive: ", app.chrome.forceDirectives["appNavigation"])
+            CiderCache.putCache("theme-settings", this.theme)
         },
         checkAll: function () {
             this.checkAppleIcons();

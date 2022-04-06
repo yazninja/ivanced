@@ -57,7 +57,7 @@ class iVancedPlugin {
             document.documentElement.classList.remove("dark");
             document.documentElement.classList.remove("light");
         }
-        app.chrome.forceDirectives["appNavigation"] = { value: "true" }
+        app.chrome.forceDirectives["appNavigation"] = { value: "seperate" }
     }
 }
 

@@ -38,7 +38,7 @@ Vue.component('plugin.ivanced-settings', {
                             Navigation Buttons Location
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
-                            <select class="md-select" style="width:180px;" v-model="theme.navBar" v-on:change="toggleNavbar">
+                            <select class="md-select" style="width:180px;" v-model="theme.navbar" v-on:change="toggleNavbar">
                                 <option value="sidebar">Top Sidebar</option>
                                 <option value="top">Top Bar</option>
                                 <option value="bottom">Below Top Bar</option>

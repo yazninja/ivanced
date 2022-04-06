@@ -33,6 +33,18 @@ Vue.component('plugin.ivanced-settings', {
                             </select>
                         </div>
                     </div>
+                    <div class="md-option-line">
+                        <div class="md-option-segment">
+                            Navigation Buttons Location
+                        </div>
+                        <div class="md-option-segment md-option-segment_auto">
+                            <select class="md-select" style="width:180px;" v-model="theme.navBar" v-on:change="toggleNavbar">
+                                <option value="sidebar">Top Sidebar</option>
+                                <option value="top">Top Bar</option>
+                                <option value="bottom">Below Top Bar</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="md-option-header"> Sidebar </div>
                     <div class="md-option-line">
                         <div class="md-option-segment">
@@ -85,17 +97,6 @@ Vue.component('plugin.ivanced-settings', {
                             </select>
                         </div>
                     </div>
-                    <div class="md-option-line">
-                        <div class="md-option-segment">
-                            Navigation Buttons Location
-                        </div>
-                        <div class="md-option-segment md-option-segment_auto">
-                            <select class="md-select" style="width:180px;" v-model="theme.navBar">
-                                <option value="">Top Bar</option>
-                                <option value="seperate">Below Top Bar</option>
-                            </select>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
@@ -106,6 +107,7 @@ Vue.component('plugin.ivanced-settings', {
             theme: {
                 appleIcons: false,
                 variant: 'none',
+                navbar: 'sidebar',
                 sidebar: {
                     home: false,
                     videos: false,
@@ -120,6 +122,7 @@ Vue.component('plugin.ivanced-settings', {
             this.theme = {
                 appleIcons: false,
                 variant: 'none',
+                navbar: 'sidebar',
                 sidebar: {
                     home: false,
                     videos: false,
@@ -191,6 +194,22 @@ Vue.component('plugin.ivanced-settings', {
             console.log("Theme Variant Changed: ", this.theme.variant)
             console.log("Root Elem: ", document.documentElement.classList)
             CiderCache.putCache("theme-settings", this.theme)
+        },
+        toggleNavbar: function () {
+            if (this.theme.navbar == "sidebar") {
+                app.chrome.forceDirectives["appNavigation"] = { value: "default" }
+                document.documentElement.classList.remove("navbar-topbar");
+                app.$forceUpdate()
+            }
+            else if (this.theme.navbar == "top") {
+                app.chrome.forceDirectives["appNavigation"] = { value: "default" }
+                document.documentElement.classList.add("navbar-topbar");
+                app.$forceUpdate()
+            }
+            else {
+                app.chrome.forceDirectives["appNavigation"] = { value: "seperate" }
+                app.$forceUpdate()
+            }
         },
         checkAll: function () {
             this.checkAppleIcons();

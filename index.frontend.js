@@ -57,7 +57,21 @@ class iVancedPlugin {
             document.documentElement.classList.remove("dark");
             document.documentElement.classList.remove("light");
         }
-        // app.chrome.forceDirectives["appNavigation"] = { value: "seperate" }
+        if (this.theme.navbar == "sidebar") {
+            app.chrome.forceDirectives["appNavigation"] = { value: "default" }
+            document.documentElement.classList.remove("navbar-topbar");
+            app.$forceUpdate()
+        }
+        else if (this.theme.navbar == "top") {
+            app.chrome.forceDirectives["appNavigation"] = { value: "default" }
+            document.documentElement.classList.add("navbar-topbar");
+            app.$forceUpdate()
+        }
+        else {
+            app.chrome.forceDirectives["appNavigation"] = { value: "seperate" }
+            app.$forceUpdate()
+        }
+        
     }
 }
 

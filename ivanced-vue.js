@@ -103,6 +103,7 @@ Vue.component('plugin.ivanced-settings', {
         </div>
     `,
     data: function () {
+        app: this.$root.app
         return {
             theme: {
                 appleIcons: false,

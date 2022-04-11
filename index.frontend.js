@@ -20,7 +20,7 @@ class iVancedPlugin {
             document.getElementsById("app").classList.add("cupertino-icns")
         }
         else {
-            document.getElementsById("app").classList.add("cupertino-icns")
+            document.getElementsById("app").classList.remove("cupertino-icns")
         }
         if (this.theme.appleDrawers) {
             document.getElementsById("app").classList.add("cupertino-drawer")
@@ -28,6 +28,7 @@ class iVancedPlugin {
         else {
             document.getElementsById("app").classList.remove("cupertino-drawer")
         }
+        console.log("loaded: " + document.getElementsById("app").classList)
         if (this.theme.sidebar.home) {
             document.getElementsByClassName("app-sidebar-header-text")[0].style.display = "none"
             document.getElementsByClassName("app-sidebar-item")[0].style.display = "none"

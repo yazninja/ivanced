@@ -141,7 +141,7 @@ Vue.component('plugin.ivanced-settings', {
         }
     },
     methods: {
-        ToggleIcons: function () {
+        toggleIcons: function () {
             if (this.theme.appleIcons) {
                 document.getElementsById("app").classList.add("cupertino-icns")
             }

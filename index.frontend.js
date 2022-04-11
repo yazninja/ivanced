@@ -14,7 +14,7 @@ class iVancedPlugin {
     }
     async LoadSettings() {
         this.theme = await CiderCache.getCache("theme-settings")
-        console.log("iVanced Cached Settings: " + this.theme)
+        console.log("iVanced Cached Settings" + this.theme)
         if (this.theme.appleIcons) {
             document.getElementById("app").classList.add("cupertino-icns")
         }
@@ -26,7 +26,7 @@ class iVancedPlugin {
         }
         else {
             document.getElementById("app").classList.remove("cupertino-drawer")
-        })
+        }
         if (this.theme.sidebar.home) {
             document.getElementsByClassName("app-sidebar-header-text")[0].style.display = "none"
             document.getElementsByClassName("app-sidebar-item")[0].style.display = "none"

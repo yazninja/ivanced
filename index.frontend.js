@@ -9,11 +9,13 @@ class iVancedPlugin {
         }
         CiderFrontAPI.AddMenuEntry(menuEntry)
         this.LoadSettings()
-        CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/cupertinoicns.less")
-        CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/appleDrawer.less")
     }
     async LoadSettings() {
+        CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/cupertinoicns.less").then(()=>{
+        CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/appleDrawer.less").then(()=>{
         this.theme = await CiderCache.getCache("theme-settings")
+        })})
+        
         console.log(this.theme)
         if (this.theme.appleIcons) {
             document.getElementsById("app").classList.add("cupertino-icns")

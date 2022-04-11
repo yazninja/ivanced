@@ -72,7 +72,7 @@ class iVancedPlugin {
         else {
             app.chrome.forceDirectives["appNavigation"] = { value: "seperate" }
         }
-        app.$forceUpdate()
+        // app.$forceUpdate()
     }
 }
 

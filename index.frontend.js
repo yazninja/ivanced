@@ -1,7 +1,5 @@
 class iVancedPlugin {
     constructor() {
-        CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/cupertinoicns.less")
-        CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/appleDrawer.less")
         const menuEntry = new CiderFrontAPI.Objects.MenuEntry()
         this.menuEntryId = uuidv4()
         menuEntry.Id = this.menuEntryId
@@ -11,6 +9,8 @@ class iVancedPlugin {
         }
         CiderFrontAPI.AddMenuEntry(menuEntry)
         this.LoadSettings()
+        CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/cupertinoicns.less")
+        CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/appleDrawer.less")
     }
     async LoadSettings() {
         this.theme = await CiderCache.getCache("theme-settings")

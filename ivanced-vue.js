@@ -10,12 +10,17 @@ Vue.component('plugin.ivanced-settings', {
                     <div class="md-option-line">
                         <div class="md-option-segment">
                             Use Apple Icons
-                            <small>
-                                Requires app restart to disable
-                            </small>
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
-                            <input type="checkbox" v-model="theme.appleIcons"  v-on:change="checkAppleIcons"switch/>
+                            <input type="checkbox" v-model="theme.appleIcons"  v-on:change="toggleIcons"switch/>
+                        </div>
+                    </div>
+                    <div class="md-option-line">
+                        <div class="md-option-segment">
+                            Use Apple Styled Drawers (Queue & Lyrics)
+                        </div>
+                        <div class="md-option-segment md-option-segment_auto">
+                            <input type="checkbox" v-model="theme.appleDrawers"  v-on:change="toggleDrawers"switch/>
                         </div>
                     </div>
                     <div class="md-option-line">
@@ -103,10 +108,11 @@ Vue.component('plugin.ivanced-settings', {
         </div>
     `,
     data: function () {
-        app: this.$root.app
+        app: this.$root
         return {
             theme: {
                 appleIcons: false,
+                appleDrawers: false,
                 variant: 'none',
                 navbar: 'sidebar',
                 sidebar: {
@@ -122,6 +128,7 @@ Vue.component('plugin.ivanced-settings', {
         if (!this.theme) {
             this.theme = {
                 appleIcons: false,
+                appleDrawers: false,
                 variant: 'none',
                 navbar: 'sidebar',
                 sidebar: {
@@ -134,18 +141,21 @@ Vue.component('plugin.ivanced-settings', {
         }
     },
     methods: {
-        checkAppleIcons: function () {
+        ToggleIcons: function () {
             if (this.theme.appleIcons) {
-                CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/cupertinoicns.less")
-                console.log("Apple Icons Enabled")
+                document.getElementsById("app").classList.add("cupertino-icns")
             }
             else {
-                bootbox.confirm(app.getLz('action.relaunch.confirm'), function (result) {
-                    if (result) {
-                        ipcRenderer.send('relaunchApp', '');
-                    }
-                })
-                console.log("Apple Icons Disabled")
+                document.getElementsById("app").classList.add("cupertino-icns")
+            }
+            CiderCache.putCache("theme-settings", this.theme)
+        },
+        toggleDrawer: function () {
+            if (this.theme.appleDrawers) {
+                document.getElementsById("app").classList.add("cupertino-drawer")
+            }
+            else {
+                document.getElementsById("app").classList.remove("cupertino-drawer")
             }
             CiderCache.putCache("theme-settings", this.theme)
         },
@@ -200,16 +210,16 @@ Vue.component('plugin.ivanced-settings', {
             if (this.theme.navbar == "sidebar") {
                 app.chrome.forceDirectives["appNavigation"] = { value: "default" }
                 document.documentElement.classList.remove("navbar-topbar");
-                this.app.$forceUpdate()
+                app.$forceUpdate()
             }
             else if (this.theme.navbar == "top") {
                 app.chrome.forceDirectives["appNavigation"] = { value: "default" }
                 document.documentElement.classList.add("navbar-topbar");
-                this.app.$forceUpdate()
+                app.$forceUpdate()
             }
             else {
                 app.chrome.forceDirectives["appNavigation"] = { value: "seperate" }
-                this.app.$forceUpdate()
+                app.$forceUpdate()
             }
             console.log("Navbar Changed: ", this.theme.navbar, "Directive: ", app.chrome.forceDirectives["appNavigation"])
             CiderCache.putCache("theme-settings", this.theme)

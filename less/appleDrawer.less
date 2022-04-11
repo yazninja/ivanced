@@ -1,0 +1,39 @@
+#app.cupertino-drawer {
+
+
+    &:not(.modular-fs) {
+        .app-drawer {
+            border-radius   : 0px;
+            top             : 0;
+            right           : 0;
+            height          : 100%;
+            box-shadow      : unset;
+            border-top      : @panelBorder;
+            border-bottom   : @panelBorder;
+            border-left     : @panelBorder;
+            background      : @mainPanelColor;
+            margin-right    : 0px;
+            position        : relative;
+
+            .lyric-line {
+                transform   : scale(1);
+                margin      : 20px;
+                opacity     : 0.3;
+                &.active {
+                    opacity         : 1.0;
+                    backdrop-filter : blur(0px);
+                }
+            }
+        }
+
+        .drawertransition-enter-active,
+        .drawertransition-leave-active {
+            transition: margin .25s var(--appleEase), opacity .25s var(--appleEase);
+        }
+
+        .drawertransition-enter,
+        .drawertransition-leave-to {
+            margin-right: -300px;
+        }
+    }
+}

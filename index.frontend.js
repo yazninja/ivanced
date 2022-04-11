@@ -1,6 +1,7 @@
 class iVancedPlugin {
     constructor() {
-        CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/stylesheet.less")
+        CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/cupertinoicns.less")
+        CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/appleDrawer.less")
         const menuEntry = new CiderFrontAPI.Objects.MenuEntry()
         this.menuEntryId = uuidv4()
         menuEntry.Id = this.menuEntryId
@@ -14,15 +15,17 @@ class iVancedPlugin {
     async LoadSettings() {
         this.theme = await CiderCache.getCache("theme-settings")
         console.log(this.theme)
-        if (this.theme.appleIcons) { 
-            CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/cupertinoicns.less")
-            console.log("Apple Icons Enabled")
+        if (this.theme.appleIcons) {
+            document.getElementsById("app").classList.add("cupertino-icns")
         }
         else {
-            // document.querySelector("head").removeChild(document.querySelector("link[href*='cupertinoicns.less']"))
-            // less.registerStylesheetsImmediately()
-            // less.refresh(true, true, true)
-            console.log("Apple Icons Disabled")
+            document.getElementsById("app").classList.add("cupertino-icns")
+        }
+        if (this.theme.appleDrawers) {
+            document.getElementsById("app").classList.add("cupertino-drawer")
+        }
+        else {
+            document.getElementsById("app").classList.remove("cupertino-drawer")
         }
         if (this.theme.sidebar.home) {
             document.getElementsByClassName("app-sidebar-header-text")[0].style.display = "none"

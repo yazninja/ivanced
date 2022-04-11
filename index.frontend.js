@@ -1,5 +1,7 @@
 class iVancedPlugin {
     constructor() {
+        CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/cupertinoicns.less")
+        CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/appleDrawer.less")
         const menuEntry = new CiderFrontAPI.Objects.MenuEntry()
         this.menuEntryId = uuidv4()
         menuEntry.Id = this.menuEntryId
@@ -11,24 +13,20 @@ class iVancedPlugin {
         this.LoadSettings()
     }
     async LoadSettings() {
-        await CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/cupertinoicns.less")
-        await CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/appleDrawer.less")
         this.theme = await CiderCache.getCache("theme-settings")
-        
-        console.log(this.theme)
+        console.log("iVanced Cached Settings: " + this.theme)
         if (this.theme.appleIcons) {
-            document.getElementsById("app").classList.add("cupertino-icns")
+            document.getElementById("app").classList.add("cupertino-icns")
         }
         else {
-            document.getElementsById("app").classList.remove("cupertino-icns")
+            document.getElementById("app").classList.remove("cupertino-icns")
         }
         if (this.theme.appleDrawers) {
-            document.getElementsById("app").classList.add("cupertino-drawer")
+            document.getElementById("app").classList.add("cupertino-drawer")
         }
         else {
-            document.getElementsById("app").classList.remove("cupertino-drawer")
-        }
-        console.log("loaded: " + document.getElementsById("app").classList)
+            document.getElementById("app").classList.remove("cupertino-drawer")
+        })
         if (this.theme.sidebar.home) {
             document.getElementsByClassName("app-sidebar-header-text")[0].style.display = "none"
             document.getElementsByClassName("app-sidebar-item")[0].style.display = "none"

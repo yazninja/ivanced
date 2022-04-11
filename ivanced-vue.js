@@ -12,7 +12,7 @@ Vue.component('plugin.ivanced-settings', {
                             Use Apple Icons
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
-                            <input type="checkbox" v-model="theme.appleIcons"  v-on:change="toggleIcons"switch/>
+                            <input type="checkbox" v-model="theme.appleIcons"  v-on:change="toggleIcons" switch/>
                         </div>
                     </div>
                     <div class="md-option-line">
@@ -20,7 +20,7 @@ Vue.component('plugin.ivanced-settings', {
                             Use Apple Styled Drawers (Queue & Lyrics)
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
-                            <input type="checkbox" v-model="theme.appleDrawers"  v-on:change="toggleDrawers"switch/>
+                            <input type="checkbox" v-model="theme.appleDrawers"  v-on:change="toggleDrawers" switch/>
                         </div>
                     </div>
                     <div class="md-option-line">
@@ -48,31 +48,6 @@ Vue.component('plugin.ivanced-settings', {
                                 <option value="top">Top Bar</option>
                                 <option value="bottom">Below Top Bar</option>
                             </select>
-                        </div>
-                    </div>
-                    <div class="md-option-header"> Sidebar </div>
-                    <div class="md-option-line">
-                        <div class="md-option-segment">
-                            Remove Home
-                        </div>
-                        <div class="md-option-segment md-option-segment_auto">
-                            <input type="checkbox" v-model="theme.sidebar.home"  v-on:change="toggleHome"switch/>
-                        </div>
-                    </div>
-                    <div class="md-option-line">
-                        <div class="md-option-segment">
-                            Remove Videos
-                        </div>
-                        <div class="md-option-segment md-option-segment_auto">
-                            <input type="checkbox" v-model="theme.sidebar.videos"  v-on:change="toggleVideos"switch/>
-                        </div>
-                    </div>
-                    <div class="md-option-line">
-                        <div class="md-option-segment">
-                            Remove Podcasts
-                        </div>
-                        <div class="md-option-segment md-option-segment_auto">
-                            <input type="checkbox" v-model="theme.sidebar.podcasts"  v-on:change="togglePodcasts"switch/>
                         </div>
                     </div>
                     <div style="opacity: 0.5; pointer-events: none;">
@@ -150,7 +125,7 @@ Vue.component('plugin.ivanced-settings', {
             }
             CiderCache.putCache("theme-settings", this.theme)
         },
-        toggleDrawer: function () {
+        toggleDrawers: function () {
             if (this.theme.appleDrawers) {
                 document.getElementsById("app").classList.add("cupertino-drawer")
             }

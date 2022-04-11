@@ -118,19 +118,19 @@ Vue.component('plugin.ivanced-settings', {
     methods: {
         toggleIcons: function () {
             if (this.theme.appleIcons) {
-                document.getElementsById("app").classList.add("cupertino-icns")
+                document.getElementById("app").classList.add("cupertino-icns")
             }
             else {
-                document.getElementsById("app").classList.add("cupertino-icns")
+                document.getElementById("app").classList.add("cupertino-icns")
             }
             CiderCache.putCache("theme-settings", this.theme)
         },
-        toggleDrawers: function () {
+        toggleDrawer: function () {
             if (this.theme.appleDrawers) {
-                document.getElementsById("app").classList.add("cupertino-drawer")
+                document.getElementById("app").classList.add("cupertino-drawer")
             }
             else {
-                document.getElementsById("app").classList.remove("cupertino-drawer")
+                document.getElementById("app").classList.remove("cupertino-drawer")
             }
             CiderCache.putCache("theme-settings", this.theme)
         },

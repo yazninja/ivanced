@@ -125,7 +125,7 @@ Vue.component('plugin.ivanced-settings', {
             }
             CiderCache.putCache("theme-settings", this.theme)
         },
-        toggleDrawer: function () {
+        toggleDrawers: function () {
             if (this.theme.appleDrawers) {
                 document.getElementById("app").classList.add("cupertino-drawer")
             }

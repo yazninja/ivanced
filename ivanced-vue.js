@@ -17,7 +17,7 @@ Vue.component('plugin.ivanced-settings', {
                     </div>
                     <div class="md-option-line">
                         <div class="md-option-segment">
-                            Use Apple Styled Drawers (Queue & Lyrics)
+                            Use Apple Style Drawers (Queue & Lyrics)
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
                             <input type="checkbox" v-model="theme.appleDrawers"  v-on:change="toggleDrawers" switch/>
@@ -121,7 +121,7 @@ Vue.component('plugin.ivanced-settings', {
                 document.getElementById("app").classList.add("cupertino-icns")
             }
             else {
-                document.getElementById("app").classList.add("cupertino-icns")
+                document.getElementById("app").classList.remove("cupertino-icns")
             }
             CiderCache.putCache("theme-settings", this.theme)
         },

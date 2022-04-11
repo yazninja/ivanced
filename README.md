@@ -10,12 +10,12 @@ https://github.com/ciderapp/iTheme
 
 What This plugin can do:
 * Use Apple Icons
-* Edit Sidebar Items (to be merged with the settings page)
+* Use Apple Style Drawers
 * `Force Theme variant` - Force iTheme to use dark mode/ light mode
-
+* `Set Navigation Button Location` - Make Navigation appear where you want it to appear (Beta)
 Upcoming features:
-* `Set Navigation Button Location` - Make Navigation appear where you want it to appear
 
+* `Set Lyrics in Fullscreen Mode` - Hide lyrics when entering fullscreen mode
 ---
 
 ### Installation/ Update

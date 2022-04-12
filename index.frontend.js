@@ -27,27 +27,6 @@ class iVancedPlugin {
         else {
             document.getElementById("app").classList.remove("cupertino-drawer")
         }
-        if (this.theme.sidebar.home) {
-            document.getElementsByClassName("app-sidebar-header-text")[0].style.display = "none"
-            document.getElementsByClassName("app-sidebar-item")[0].style.display = "none"
-            
-        }
-        else {
-            document.getElementsByClassName("app-sidebar-header-text")[0].style.display = "block"
-            document.getElementsByClassName("app-sidebar-item")[0].style.display = "flex"
-        }
-        if (this.theme.sidebar.videos) {
-            document.getElementsByClassName("app-sidebar-item")[8].style.display = "none"
-        }
-        else {
-            document.getElementsByClassName("app-sidebar-item")[8].style.display = "flex"
-        }
-        if (this.theme.sidebar.podcasts) {
-            document.getElementsByClassName("app-sidebar-item")[9].style.display = "none"
-        }
-        else {
-            document.getElementsByClassName("app-sidebar-item")[9].style.display = "flex"
-        }
         if (this.theme.variant == "dark") {
             document.documentElement.classList.add("dark");
             document.documentElement.classList.remove("light");
@@ -61,17 +40,20 @@ class iVancedPlugin {
             document.documentElement.classList.remove("light");
         }
         if (this.theme.navbar == "sidebar") {
-            app.chrome.forceDirectives["appNavigation"] = { value: "default" }
-            document.documentElement.classList.remove("navbar-topbar");
+            document.getElementById("app").classList.add("navbar-sidebar");
+            document.getElementById("app").classList.remove("navbar-topbar");
+            document.getElementById("app").classList.remove("navbar");
         }
         else if (this.theme.navbar == "top") {
-            app.chrome.forceDirectives["appNavigation"] = { value: "default" }
-            document.documentElement.classList.add("navbar-topbar");
+            document.getElementById("app").classList.remove("navbar-sidebar");
+            document.getElementById("app").classList.add("navbar-topbar");
+            document.getElementById("app").classList.remove("navbar");
         }
         else {
-            app.chrome.forceDirectives["appNavigation"] = { value: "seperate" }
+            document.getElementById("app").classList.remove("navbar-sidebar");
+            document.getElementById("app").classList.remove("navbar-topbar");
+            document.getElementById("app").classList.add("navbar");
         }
-        // app.$forceUpdate()
     }
 }
 

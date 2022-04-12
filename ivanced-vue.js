@@ -134,36 +134,6 @@ Vue.component('plugin.ivanced-settings', {
             }
             CiderCache.putCache("theme-settings", this.theme)
         },
-        toggleHome: function () {
-            if (this.theme.sidebar.home) {
-                document.getElementsByClassName("app-sidebar-header-text")[0].style.display = "none"
-                document.getElementsByClassName("app-sidebar-item")[0].style.display = "none"
-
-            }
-            else {
-                document.getElementsByClassName("app-sidebar-header-text")[0].style.display = "block"
-                document.getElementsByClassName("app-sidebar-item")[0].style.display = "flex"
-            }
-            CiderCache.putCache("theme-settings", this.theme)
-        },
-        toggleVideos: function () {
-            if (this.theme.sidebar.videos) {
-                document.getElementsByClassName("app-sidebar-item")[8].style.display = "none"
-            }
-            else {
-                document.getElementsByClassName("app-sidebar-item")[8].style.display = "flex"
-            }
-            CiderCache.putCache("theme-settings", this.theme)
-        },
-        togglePodcasts: function () {
-            if (this.theme.sidebar.podcasts) {
-                document.getElementsByClassName("app-sidebar-item")[9].style.display = "none"
-            }
-            else {
-                document.getElementsByClassName("app-sidebar-item")[9].style.display = "flex"
-            }
-            CiderCache.putCache("theme-settings", this.theme)
-        },
         toggleThemeVariant: function () {
             if (this.theme.variant == "dark") {
                 document.documentElement.classList.add("dark");
@@ -183,27 +153,21 @@ Vue.component('plugin.ivanced-settings', {
         },
         toggleNavbar: function () {
             if (this.theme.navbar == "sidebar") {
-                app.chrome.forceDirectives["appNavigation"] = { value: "default" }
-                document.documentElement.classList.remove("navbar-topbar");
-                app.$forceUpdate()
+                document.getElementById("app").classList.add("navbar-sidebar");
+                document.getElementById("app").classList.remove("navbar-topbar");
+                document.getElementById("app").classList.remove("navbar");
             }
             else if (this.theme.navbar == "top") {
-                app.chrome.forceDirectives["appNavigation"] = { value: "default" }
-                document.documentElement.classList.add("navbar-topbar");
-                app.$forceUpdate()
+                document.getElementById("app").classList.remove("navbar-sidebar");
+                document.getElementById("app").classList.add("navbar-topbar");
+                document.getElementById("app").classList.remove("navbar");
             }
             else {
-                app.chrome.forceDirectives["appNavigation"] = { value: "seperate" }
-                app.$forceUpdate()
+                document.getElementById("app").classList.remove("navbar-sidebar");
+                document.getElementById("app").classList.remove("navbar-topbar");
+                document.getElementById("app").classList.add("navbar");
             }
-            console.log("Navbar Changed: ", this.theme.navbar, "Directive: ", app.chrome.forceDirectives["appNavigation"])
             CiderCache.putCache("theme-settings", this.theme)
         },
-        checkAll: function () {
-            this.checkAppleIcons();
-            this.toggleHome();
-            this.toggleVideos();
-            this.togglePodcasts();
-        }
     }
 })

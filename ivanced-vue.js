@@ -17,6 +17,14 @@ Vue.component('plugin.ivanced-settings', {
                     </div>
                     <div class="md-option-line">
                         <div class="md-option-segment">
+                            Use Apple Font (San Fransisco)
+                        </div>
+                        <div class="md-option-segment md-option-segment_auto">
+                            <input type="checkbox" v-model="theme.appleFont"  v-on:change="toggleFonts" switch/>
+                        </div>
+                    </div>
+                    <div class="md-option-line">
+                        <div class="md-option-segment">
                             Use Apple Style Drawers (Queue & Lyrics)
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
@@ -87,6 +95,7 @@ Vue.component('plugin.ivanced-settings', {
         return {
             theme: {
                 appleIcons: false,
+                appleFont:false,
                 appleDrawers: false,
                 variant: 'none',
                 navbar: 'sidebar',
@@ -103,6 +112,7 @@ Vue.component('plugin.ivanced-settings', {
         if (!this.theme) {
             this.theme = {
                 appleIcons: false,
+                appleFont:false,
                 appleDrawers: false,
                 variant: 'none',
                 navbar: 'sidebar',
@@ -122,6 +132,15 @@ Vue.component('plugin.ivanced-settings', {
             }
             else {
                 document.getElementById("app").classList.remove("cupertino-icns")
+            }
+            CiderCache.putCache("theme-settings", this.theme)
+        },
+        toggleFonts: function () {
+            if (this.theme.appleFont) {
+                document.getElementById("app").classList.add("cupertino-font")
+            }
+            else {
+                document.getElementById("app").classList.remove("cupertino-font")
             }
             CiderCache.putCache("theme-settings", this.theme)
         },

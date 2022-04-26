@@ -1,6 +1,7 @@
 class iVancedPlugin {
     constructor() {
         CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/cupertinoicns.less")
+        CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/cupertinofont.less")
         CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/appleDrawer.less")
         const menuEntry = new CiderFrontAPI.Objects.MenuEntry()
         this.menuEntryId = uuidv4()
@@ -21,6 +22,13 @@ class iVancedPlugin {
         else {
             document.getElementById("app").classList.remove("cupertino-icns")
         }
+        if (this.theme.appleFont) {
+            document.getElementById("app").classList.add("cupertino-font")
+        }
+        else {
+            document.getElementById("app").classList.remove("cupertino-font")
+        }
+        CiderCache.putCache("theme-settings", this.theme)
         if (this.theme.appleDrawers) {
             document.getElementById("app").classList.add("cupertino-drawer")
         }

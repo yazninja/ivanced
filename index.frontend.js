@@ -76,25 +76,19 @@ class iVancedPlugin {
             document.getElementById("app").classList.add("navbar");
         }
         setInterval(function () {
-            console.log("Changing artwork quality")
             if (theme.fullArtworkQual) {
                 let artworks = document.getElementsByClassName("mediaitem-artwork--img")
                 for (let artwork of artworks) {
-                    console.log(artwork.src)
                     artwork.src = artwork.src.replace("/190x190", "/1024x1024")
-                    console.log(artwork.src)
                 }
             }
             else {
                 let artworks = document.getElementsByClassName("mediaitem-artwork--img")
                 for (let artwork of artworks) {
-                    console.log(artwork.src)
                     artwork.src = artwork.src.replace("/1024x1024", "/190x190")
-                    console.log(artwork.src)
                 }
             }
-            console.log("Artwork quality changed")
-        }, 10000)
+        }, 100)
     }
 }
 

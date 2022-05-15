@@ -31,7 +31,7 @@ Vue.component('plugin.ivanced-settings', {
                             </small>
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
-                            <input type="checkbox" v-model="theme.fullArtworkQual"  v-on:change="" switch/>
+                            <input type="checkbox" v-model="theme.fullArtworkQual"  v-on:change="toggleArtworkQuality" switch/>
                         </div>
                     </div>
                     <div class="md-option-line">
@@ -155,6 +155,9 @@ Vue.component('plugin.ivanced-settings', {
             else {
                 document.getElementById("app").classList.remove("cupertino-font")
             }
+            CiderCache.putCache("theme-settings", this.theme)
+        },
+        toggleArtworkQuality: function () {
             CiderCache.putCache("theme-settings", this.theme)
         },
         toggleDrawers: function () {

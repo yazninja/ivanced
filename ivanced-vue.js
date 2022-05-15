@@ -25,6 +25,17 @@ Vue.component('plugin.ivanced-settings', {
                     </div>
                     <div class="md-option-line">
                         <div class="md-option-segment">
+                            Use Extreme Album Art Quality
+                            <small>
+                                900x900px
+                            </small>
+                        </div>
+                        <div class="md-option-segment md-option-segment_auto">
+                            <input type="checkbox" v-model="theme.fullArtworkQual"  v-on:change="" switch/>
+                        </div>
+                    </div>
+                    <div class="md-option-line">
+                        <div class="md-option-segment">
                             Use Apple Style Drawers (Queue & Lyrics)
                         </div>
                         <div class="md-option-segment md-option-segment_auto">
@@ -97,6 +108,7 @@ Vue.component('plugin.ivanced-settings', {
                 appleIcons: false,
                 appleFont:false,
                 appleDrawers: false,
+                fullArtworkQual: false,
                 variant: 'none',
                 navbar: 'sidebar',
                 sidebar: {
@@ -114,6 +126,7 @@ Vue.component('plugin.ivanced-settings', {
                 appleIcons: false,
                 appleFont:false,
                 appleDrawers: false,
+                fullArtworkQual: false,
                 variant: 'none',
                 navbar: 'sidebar',
                 sidebar: {

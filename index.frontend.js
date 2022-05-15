@@ -7,7 +7,7 @@ class iVancedPlugin {
         this.menuEntryId = uuidv4()
         menuEntry.Id = this.menuEntryId
         menuEntry.name = "iTheme Advanced Settings"
-        menuEntry.onClick = ()=>{
+        menuEntry.onClick = () => {
             app.appRoute("plugin/ivanced-settings")
         }
         CiderFrontAPI.AddMenuEntry(menuEntry)
@@ -15,12 +15,25 @@ class iVancedPlugin {
     }
     async LoadSettings() {
         this.theme = await CiderCache.getCache("theme-settings")
+        let theme = this.theme
         console.log("iVanced Cached Settings" + this.theme)
         if (this.theme.appleIcons) {
             document.getElementById("app").classList.add("cupertino-icns")
         }
         else {
             document.getElementById("app").classList.remove("cupertino-icns")
+        }
+        if (this.theme.fullArtworkQual) {
+            let artworks = document.getElementsByClassName("mediaitem-artwork--img")
+            for (let artwork of artworks) {
+                artwork.src = artwork.src.replace("/190x190/", "/1024x1024/")
+            }
+        }
+        else {
+            let artworks = document.getElementsByClassName("mediaitem-artwork--img")
+            for (let artwork of artworks) {
+                artwork.src = artwork.src.replace("/1024x1024/", "/190x190/")
+            }
         }
         if (this.theme.appleFont) {
             document.getElementById("app").classList.add("cupertino-font")
@@ -62,6 +75,26 @@ class iVancedPlugin {
             document.getElementById("app").classList.remove("navbar-topbar");
             document.getElementById("app").classList.add("navbar");
         }
+        setInterval(function () {
+            console.log("Changing artwork quality")
+            if (theme.fullArtworkQual) {
+                let artworks = document.getElementsByClassName("mediaitem-artwork--img")
+                for (let artwork of artworks) {
+                    console.log(artwork.src)
+                    artwork.src = artwork.src.replace("/190x190", "/1024x1024")
+                    console.log(artwork.src)
+                }
+            }
+            else {
+                let artworks = document.getElementsByClassName("mediaitem-artwork--img")
+                for (let artwork of artworks) {
+                    console.log(artwork.src)
+                    artwork.src = artwork.src.replace("/1024x1024", "/190x190")
+                    console.log(artwork.src)
+                }
+            }
+            console.log("Artwork quality changed")
+        }, 10000)
     }
 }
 

@@ -11,6 +11,7 @@ https://github.com/ciderapp/iTheme
 What This plugin can do:
 * Use Apple Icons
 * Use Apple Font (San Fransisco)
+* Use Hi Quality Album Artwork ( makes Genres in Search page full)
 * Use Apple Style Drawers
 * `Force Theme variant` - Force iTheme to use dark mode/ light mode
 * `Set Navigation Button Location` - Make Navigation appear where you want it to appear (Beta)

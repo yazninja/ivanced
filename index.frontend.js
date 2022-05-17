@@ -81,7 +81,7 @@ class iVancedPlugin {
                         if (newVal === "search") {
                             let artworks = document.getElementsByClassName("mediaitem-artwork--img")
                             for (let artwork of artworks) {
-                                artwork.src = artwork.src.replace("cc", "bb")
+                                artwork.src = artwork.src.replace("600x600cc.", "1040x346bb.")
                             }
                             console.log("Changing Genre Artwork Quality")
                         }

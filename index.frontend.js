@@ -1,12 +1,12 @@
 class iVancedPlugin {
     constructor() {
+        let plugin = this
         CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/cupertinoicns.less")
         CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/cupertinofont.less")
         CiderFrontAPI.StyleSheets.Add("./plugins/ivanced/less/appleDrawer.less")
-        
+        this.LoadSettings()
         app.$watch('page', async function (newVal, oldVal) {
-            this.theme = await CiderCache.getCache("theme-settings")
-            setTimeout(() => { this.ChangeArtworkQuality() }, 100)
+            plugin.ChangeArtworkQuality(await CiderCache.getCache("theme-settings"), newVal, oldVal)
         })
 
         const menuEntry = new CiderFrontAPI.Objects.MenuEntry()
@@ -17,11 +17,10 @@ class iVancedPlugin {
             app.appRoute("plugin/ivanced-settings")
         }
         CiderFrontAPI.AddMenuEntry(menuEntry)
-        this.LoadSettings()
+
     }
     async LoadSettings() {
         this.theme = await CiderCache.getCache("theme-settings")
-        theme = this.theme
         console.log("iVanced Cached Settings" + this.theme)
         if (this.theme.appleIcons) {
             document.getElementById("app").classList.add("cupertino-icns")
@@ -35,7 +34,6 @@ class iVancedPlugin {
         else {
             document.getElementById("app").classList.remove("cupertino-font")
         }
-        CiderCache.putCache("theme-settings", this.theme)
         if (this.theme.appleDrawers) {
             document.getElementById("app").classList.add("cupertino-drawer")
         }
@@ -70,33 +68,36 @@ class iVancedPlugin {
             document.getElementById("app").classList.add("navbar");
         }
     }
-    ChangeArtworkQuality() {
-        if (newVal !== oldVal) {
-            if (this.theme.fullArtworkQual) {
-                console.log("Full Artwork Quality")
-                let artworks = document.getElementsByClassName("mediaitem-artwork--img")
-                for (let artwork of artworks) {
-                    artwork.src = artwork.src.replace("/190x190", "/400x400")
-                }
-                setTimeout(() => {
-                    if (newVal === "search") {
-                        let artworks = document.getElementsByClassName("mediaitem-artwork--img")
-                        for (let artwork of artworks) {
-                            artwork.src = artwork.src.replace("cc", "bb")
-                        }
-                        console.log("Changing Genre Artwork Quality")
+    async ChangeArtworkQuality(theme, newVal, oldVal) {
+        setTimeout(() => {
+            if (newVal !== oldVal) {
+                if (theme.fullArtworkQual) {
+                    console.log("Full Artwork Quality")
+                    let artworks = document.getElementsByClassName("mediaitem-artwork--img")
+                    for (let artwork of artworks) {
+                        artwork.src = artwork.src.replace("/190x190", "/400x400")
                     }
-                }, 900)
-            }
-            else {
-                let artworks = document.getElementsByClassName("mediaitem-artwork--img")
-                for (let artwork of artworks) {
-                    artwork.src = artwork.src.replace("/400x400", "/190x190")
+                    setTimeout(() => {
+                        if (newVal === "search") {
+                            let artworks = document.getElementsByClassName("mediaitem-artwork--img")
+                            for (let artwork of artworks) {
+                                artwork.src = artwork.src.replace("cc", "bb")
+                            }
+                            console.log("Changing Genre Artwork Quality")
+                        }
+                    }, 900)
                 }
+                else {
+                    let artworks = document.getElementsByClassName("mediaitem-artwork--img")
+                    for (let artwork of artworks) {
+                        artwork.src = artwork.src.replace("/400x400", "/190x190")
+                    }
+                }
+                console.log("Changing Artwork Quality")
             }
-            console.log("Changing Artwork Quality")
-        }
+        }, 100)
     }
+
 }
 
 new iVancedPlugin()

@@ -27,7 +27,7 @@ Upcoming features:
 4. Look for `iVanced (Alpha)` and click install
 
 ### Usage
-1. Click Cider Icon/ Profile Picture on the ttop bar
+1. Click Cider Icon/ Profile Picture on the top bar
 2. In the User menu, clcik `Plug-in`
 3. From the plug-in menu, select `iTheme Advanced Settings`
 4. Use your desired settings
